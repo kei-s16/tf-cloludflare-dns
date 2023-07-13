@@ -9,6 +9,16 @@ resource "cloudflare_record" "blog" {
   allow_overwrite = false
 }
 
+resource "cloudflare_record" "blog_staging" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "staging.blog"
+  comment         = "blog on Vercel"
+  type            = "CNAME"
+  value           = "cname.vercel-dns.com."
+  proxied         = false
+  allow_overwrite = false
+}
+
 resource "cloudflare_record" "apex" {
   zone_id         = var.cloudflare_zone_id
   name            = "k16em.net"
