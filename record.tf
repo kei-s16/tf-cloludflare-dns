@@ -56,3 +56,12 @@ resource "cloudflare_record" "keybase" {
   value           = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8"
   allow_overwrite = false
 }
+
+resource "cloudflare_record" "keybase-blog" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "blog"
+  comment         = "for keybase"
+  type            = "TXT"
+  value           = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo"
+  allow_overwrite = false
+}
