@@ -48,7 +48,7 @@ resource "cloudflare_record" "atproto-bot" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "keybase" {
+resource "cloudflare_record" "keybase-apex" {
   zone_id         = var.cloudflare_zone_id
   name            = "k16em.net"
   comment         = "for keybase"
