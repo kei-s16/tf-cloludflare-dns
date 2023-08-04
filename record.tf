@@ -65,3 +65,22 @@ resource "cloudflare_record" "keybase-blog" {
   value           = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo"
   allow_overwrite = false
 }
+
+resource "cloudflare_record" "txt-localhost" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "localhost"
+  type            = "TXT"
+  value           = "This DNS Record points to your localhost."
+  allow_overwrite = false
+}
+
+# A Records
+resource "cloudflare_record" "a-localhost" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "localhost"
+  comment         = "for local development env"
+  type            = "A"
+  value           = "127.0.0.1"
+  proxied         = false
+  allow_overwrite = false
+}
