@@ -1,4 +1,12 @@
 terraform {
+  cloud {
+    organization = "kei-s16"
+
+    workspaces {
+      name = "cloudflare"
+    }
+  }
+
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
