@@ -1,5 +1,5 @@
 # CNAME Records
-resource "cloudflare_record" "blog" {
+resource "cloudflare_record" "cname-blog" {
   zone_id         = var.cloudflare_zone_id
   name            = "blog"
   comment         = "blog on Vercel"
@@ -9,7 +9,7 @@ resource "cloudflare_record" "blog" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "apex" {
+resource "cloudflare_record" "cname-apex" {
   zone_id         = var.cloudflare_zone_id
   name            = "k16em.net"
   comment         = "LP on Cloudflare Pages / using CNAME flattening"
@@ -19,7 +19,7 @@ resource "cloudflare_record" "apex" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "www" {
+resource "cloudflare_record" "cname-www" {
   zone_id         = var.cloudflare_zone_id
   name            = "www"
   comment         = "LP on Cloudflare Pages"
@@ -30,7 +30,7 @@ resource "cloudflare_record" "www" {
 }
 
 # TXT Records
-resource "cloudflare_record" "atproto" {
+resource "cloudflare_record" "txt-atproto" {
   zone_id         = var.cloudflare_zone_id
   name            = "_atproto"
   comment         = "for bluesky"
@@ -39,7 +39,7 @@ resource "cloudflare_record" "atproto" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "atproto-bot" {
+resource "cloudflare_record" "txt-atproto-bot" {
   zone_id         = var.cloudflare_zone_id
   name            = "_atproto.sandbox"
   comment         = "for bluesky bot"
@@ -48,7 +48,7 @@ resource "cloudflare_record" "atproto-bot" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "keybase-apex" {
+resource "cloudflare_record" "txt-keybase-apex" {
   zone_id         = var.cloudflare_zone_id
   name            = "k16em.net"
   comment         = "for keybase"
@@ -57,7 +57,7 @@ resource "cloudflare_record" "keybase-apex" {
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "keybase-blog" {
+resource "cloudflare_record" "txt-keybase-blog" {
   zone_id         = var.cloudflare_zone_id
   name            = "blog"
   comment         = "for keybase"
