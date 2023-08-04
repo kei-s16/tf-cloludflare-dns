@@ -1,16 +1,7 @@
-LOCK_FILE = .terraform.lock.hcl
-SAVED_PLAN = tfplan
+TFC_CREDENTIALS = $(HOME)/.terraform.d/credentials.tfrc.json
 
-dry-run: $(LOCK_FILE)
-	terraform plan -var-file="secrets.tfvars"
+plan: $(TFC_CREDENTIALS)
+	terraform plan
 
-plan: $(LOCK_FILE)
-	terraform plan -var-file="secrets.tfvars" -out tfplan
-
-apply: $(SAVED_PLAN)
-	terraform apply tfplan
-
-all: dry-run
-
-clean:
-	rm $(SAVED_PLAN)
+apply: $(TFC_CREDENTIALS)
+	terraform apply
