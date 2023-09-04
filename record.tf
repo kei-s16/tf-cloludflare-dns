@@ -5,7 +5,7 @@ resource "cloudflare_record" "a-srv-util" {
   comment         = "my utility endpoint"
   type            = "A"
   value           = "34.120.54.55"
-  proxied         = true
+  proxied         = false
   allow_overwrite = false
 }
 
@@ -16,7 +16,7 @@ resource "cloudflare_record" "aaaa-srv-util" {
   comment         = "my utility endpoint"
   type            = "AAAA"
   value           = "2600:1901:0:6d85::"
-  proxied         = true
+  proxied         = false
   allow_overwrite = false
 }
 
