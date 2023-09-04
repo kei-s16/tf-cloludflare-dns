@@ -57,7 +57,7 @@ resource "cloudflare_record" "cname-srv-util" {
   comment         = "my utility endpoint"
   type            = "CNAME"
   value           = "e103dfa20abbcf916c17dcce._acme.deno.dev."
-  proxied         = true
+  proxied         = false
   allow_overwrite = false
 }
 
