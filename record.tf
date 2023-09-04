@@ -1,3 +1,25 @@
+# A Records
+resource "cloudflare_record" "a-srv-util" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "util.srv"
+  comment         = "my utility endpoint"
+  type            = "A"
+  value           = "34.120.54.55"
+  proxied         = true
+  allow_overwrite = false
+}
+
+# AAAA Records
+resource "cloudflare_record" "aaaa-srv-util" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "util.srv"
+  comment         = "my utility endpoint"
+  type            = "AAAA"
+  value           = "2600:1901:0:6d85::"
+  proxied         = true
+  allow_overwrite = false
+}
+
 # CNAME Records
 resource "cloudflare_record" "cname-blog" {
   zone_id         = var.cloudflare_zone_id
@@ -25,6 +47,16 @@ resource "cloudflare_record" "cname-www" {
   comment         = "LP on Cloudflare Pages"
   type            = "CNAME"
   value           = "k16em-net.pages.dev"
+  proxied         = true
+  allow_overwrite = false
+}
+
+resource "cloudflare_record" "cname-srv-util" {
+  zone_id         = var.cloudflare_zone_id
+  name            = "_acme-challenge.util.srv"
+  comment         = "my utility endpoint"
+  type            = "CNAME"
+  value           = "e103dfa20abbcf916c17dcce._acme.deno.dev."
   proxied         = true
   allow_overwrite = false
 }
