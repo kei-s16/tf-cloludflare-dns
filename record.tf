@@ -1,118 +1,74 @@
+locals {
+  a_records = {
+    "util.srv" = { value = "34.120.54.55", comment = "my utility endpoint", proxied = false }
+    "localhost" = { value = "127.0.0.1", comment = "for local development env", proxied = false }
+  }
+  aaaa_records = {
+    "util.srv" = { value = "2600:1901:0:6d85::", comment = "my utility endpoint", proxied = false }
+  }
+  cname_recoreds = {
+    "blog" = { value = "cname.vercel-dns.com.", comment = "blog on Vercel", proxied = false }
+    "k16em.net" = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages / using CNAME flattening", proxied = true }
+    "www" = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages", proxied = true }
+    "_acme-challenge.util.srv" = { value = "e103dfa20abbcf916c17dcce._acme.deno.dev.", comment = "my utility endpoint", proxied = false }
+  }
+  txt_records = {
+    "_atproto" = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
+    "_atproto.sandbox" = { value = "did=did:plc:grwbsccbvjgbf7w5zefiaa23", comment = "for bluesky bot" }
+    "k16em.net" = { value = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8", comment = "for keybase" }
+    "blog" = { value = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo", comment = "for keybase" }
+    "localhost" = { value = "This DNS Record points to your localhost.", comment = "" }
+  }
+}
+
 # A Records
-resource "cloudflare_record" "a-srv-util" {
+resource "cloudflare_record" "a" {
+  for_each = local.a_records
+
   zone_id         = var.cloudflare_zone_id
-  name            = "util.srv"
-  comment         = "my utility endpoint"
+  name            = each.key
+  comment         = each.value.comment
   type            = "A"
-  value           = "34.120.54.55"
-  proxied         = false
+  value           = each.value.value
+  proxied         = each.value.proxied
   allow_overwrite = false
 }
 
 # AAAA Records
-resource "cloudflare_record" "aaaa-srv-util" {
+resource "cloudflare_record" "aaaa" {
+  for_each = local.aaaa_records
+
   zone_id         = var.cloudflare_zone_id
-  name            = "util.srv"
-  comment         = "my utility endpoint"
+  name            = each.key
+  comment         = each.value.comment
   type            = "AAAA"
-  value           = "2600:1901:0:6d85::"
-  proxied         = false
+  value           = each.value.value
+  proxied         = each.value.proxied
   allow_overwrite = false
 }
 
 # CNAME Records
-resource "cloudflare_record" "cname-blog" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "blog"
-  comment         = "blog on Vercel"
-  type            = "CNAME"
-  value           = "cname.vercel-dns.com."
-  proxied         = false
-  allow_overwrite = false
-}
+resource "cloudflare_record" "cname" {
+  for_each = local.cname_recoreds
 
-resource "cloudflare_record" "cname-apex" {
   zone_id         = var.cloudflare_zone_id
-  name            = "k16em.net"
-  comment         = "LP on Cloudflare Pages / using CNAME flattening"
+  name            = each.key
+  comment         = each.value.comment
   type            = "CNAME"
-  value           = "k16em-net.pages.dev"
-  proxied         = true
-  allow_overwrite = false
-}
-
-resource "cloudflare_record" "cname-www" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "www"
-  comment         = "LP on Cloudflare Pages"
-  type            = "CNAME"
-  value           = "k16em-net.pages.dev"
-  proxied         = true
-  allow_overwrite = false
-}
-
-resource "cloudflare_record" "cname-srv-util" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "_acme-challenge.util.srv"
-  comment         = "my utility endpoint"
-  type            = "CNAME"
-  value           = "e103dfa20abbcf916c17dcce._acme.deno.dev."
-  proxied         = false
+  value           = each.value.value
+  proxied         = each.value.proxied
   allow_overwrite = false
 }
 
 # TXT Records
-resource "cloudflare_record" "txt-atproto" {
+resource "cloudflare_record" "txt" {
+  for_each = local.txt_records
+
   zone_id         = var.cloudflare_zone_id
-  name            = "_atproto"
-  comment         = "for bluesky"
+  name            = each.key
+  comment         = each.value.comment
   type            = "TXT"
-  value           = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi"
+  value           = each.value.value
   allow_overwrite = false
 }
 
-resource "cloudflare_record" "txt-atproto-bot" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "_atproto.sandbox"
-  comment         = "for bluesky bot"
-  type            = "TXT"
-  value           = "did=did:plc:grwbsccbvjgbf7w5zefiaa23"
-  allow_overwrite = false
-}
-
-resource "cloudflare_record" "txt-keybase-apex" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "k16em.net"
-  comment         = "for keybase"
-  type            = "TXT"
-  value           = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8"
-  allow_overwrite = false
-}
-
-resource "cloudflare_record" "txt-keybase-blog" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "blog"
-  comment         = "for keybase"
-  type            = "TXT"
-  value           = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo"
-  allow_overwrite = false
-}
-
-resource "cloudflare_record" "txt-localhost" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "localhost"
-  type            = "TXT"
-  value           = "This DNS Record points to your localhost."
-  allow_overwrite = false
-}
-
-# A Records
-resource "cloudflare_record" "a-localhost" {
-  zone_id         = var.cloudflare_zone_id
-  name            = "localhost"
-  comment         = "for local development env"
-  type            = "A"
-  value           = "127.0.0.1"
-  proxied         = false
-  allow_overwrite = false
-}
