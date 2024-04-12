@@ -1,23 +1,23 @@
 locals {
   a_records = {
-    "util.srv" = { value = "34.120.54.55", comment = "my utility endpoint", proxied = false }
+    "util.srv"  = { value = "34.120.54.55", comment = "my utility endpoint", proxied = false }
     "localhost" = { value = "127.0.0.1", comment = "for local development env", proxied = false }
   }
   aaaa_records = {
     "util.srv" = { value = "2600:1901:0:6d85::", comment = "my utility endpoint", proxied = false }
   }
   cname_recoreds = {
-    "blog" = { value = "cname.vercel-dns.com.", comment = "blog on Vercel", proxied = false }
-    "k16em.net" = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages / using CNAME flattening", proxied = true }
-    "www" = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages", proxied = true }
+    "blog"                     = { value = "cname.vercel-dns.com.", comment = "blog on Vercel", proxied = false }
+    "k16em.net"                = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages / using CNAME flattening", proxied = true }
+    "www"                      = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages", proxied = true }
     "_acme-challenge.util.srv" = { value = "e103dfa20abbcf916c17dcce._acme.deno.dev.", comment = "my utility endpoint", proxied = false }
   }
   txt_records = {
-    "_atproto" = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
+    "_atproto"         = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
     "_atproto.sandbox" = { value = "did=did:plc:grwbsccbvjgbf7w5zefiaa23", comment = "for bluesky bot" }
-    "k16em.net" = { value = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8", comment = "for keybase" }
-    "blog" = { value = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo", comment = "for keybase" }
-    "localhost" = { value = "This DNS Record points to your localhost.", comment = "" }
+    "k16em.net"        = { value = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8", comment = "for keybase" }
+    "blog"             = { value = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo", comment = "for keybase" }
+    "localhost"        = { value = "This DNS Record points to your localhost.", comment = "" }
   }
 }
 
