@@ -28,8 +28,8 @@ variable "cloudflare_api_token" {
   EOT
 }
 
-
 variable "cloudflare_domain" {
   type        = string
   description = "管理するドメイン名"
 }
+
