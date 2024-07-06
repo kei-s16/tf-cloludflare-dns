@@ -1,4 +1,6 @@
 terraform {
+  required_version = "~> 1.9.1"
+
   cloud {
     organization = "kei-s16"
 
@@ -10,7 +12,7 @@ terraform {
   required_providers {
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 4.29.0"
+      version = "~> 4.36.0"
     }
   }
 }
@@ -27,3 +29,4 @@ module "dns" {
   cloudflare_zone_id    = var.cloudflare_zone_id
   cloudflare_domain     = var.cloudflare_domain
 }
+

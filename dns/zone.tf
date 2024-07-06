@@ -3,3 +3,4 @@ resource "cloudflare_zone" "k16em" {
   account_id = var.cloudflare_account_id
   plan       = "free"
 }
+
