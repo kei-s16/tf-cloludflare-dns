@@ -5,3 +5,4 @@ plan: $(TFC_CREDENTIALS)
 
 apply: $(TFC_CREDENTIALS)
 	terraform apply
+
