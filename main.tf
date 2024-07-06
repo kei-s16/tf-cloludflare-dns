@@ -3,7 +3,7 @@ terraform {
     organization = "kei-s16"
 
     workspaces {
-      name = "cloudflare"
+      name = "cloudflare-dns"
     }
   }
 
