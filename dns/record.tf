@@ -11,6 +11,7 @@ locals {
     "k16em.net"                = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages / using CNAME flattening", proxied = true }
     "www"                      = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages", proxied = true }
     "_acme-challenge.util.srv" = { value = "e103dfa20abbcf916c17dcce._acme.deno.dev.", comment = "my utility endpoint", proxied = false }
+    "flavor.api.app"           = { value = "omenspeaker.k16em.workers.dev", comment = "", proxied = true }
   }
   txt_records = {
     "_atproto"         = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
