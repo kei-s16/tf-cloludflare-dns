@@ -8,8 +8,8 @@ locals {
   }
   cname_recoreds = {
     "blog"                     = { value = "cname.vercel-dns.com.", comment = "blog on Vercel", proxied = false }
-    "k16em.net"                = { value = "kei-s16.github.io", comment = "LP on GitHub Pages / using CNAME flattening", proxied = true }
-    "www"                      = { value = "kei-s16.github.io", comment = "LP on GitHub Pages", proxied = true }
+    "k16em.net"                = { value = "kei-s16.github.io", comment = "LP on GitHub Pages / using CNAME flattening", proxied = false }
+    "www"                      = { value = "kei-s16.github.io", comment = "LP on GitHub Pages", proxied = false }
     "_acme-challenge.util.srv" = { value = "e103dfa20abbcf916c17dcce._acme.deno.dev.", comment = "my utility endpoint", proxied = false }
   }
   txt_records = {
