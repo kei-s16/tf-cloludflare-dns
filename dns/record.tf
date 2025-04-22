@@ -8,16 +8,17 @@ locals {
   }
   cname_recoreds = {
     "blog"                     = { value = "cname.vercel-dns.com.", comment = "blog on Vercel", proxied = false }
-    "k16em.net"                = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages / using CNAME flattening", proxied = true }
-    "www"                      = { value = "k16em-net.pages.dev", comment = "LP on Cloudflare Pages", proxied = true }
+    "k16em.net"                = { value = "kei-s16.github.io", comment = "LP on GitHub Pages / using CNAME flattening", proxied = true }
+    "www"                      = { value = "kei-s16.github.io", comment = "LP on GitHub Pages", proxied = true }
     "_acme-challenge.util.srv" = { value = "e103dfa20abbcf916c17dcce._acme.deno.dev.", comment = "my utility endpoint", proxied = false }
   }
   txt_records = {
-    "_atproto"         = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
-    "_atproto.sandbox" = { value = "did=did:plc:grwbsccbvjgbf7w5zefiaa23", comment = "for bluesky bot" }
-    "k16em.net"        = { value = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8", comment = "for keybase" }
-    "blog"             = { value = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo", comment = "for keybase" }
-    "localhost"        = { value = "This DNS Record points to your localhost.", comment = "" }
+    "_atproto"                        = { value = "did=did:plc:h3q4yrpualkpqes2zjn5xtbi", comment = "for bluesky" }
+    "_atproto.sandbox"                = { value = "did=did:plc:grwbsccbvjgbf7w5zefiaa23", comment = "for bluesky bot" }
+    "k16em.net"                       = { value = "keybase-site-verification=tpgM8Hmp9bkePa9j-qMD7G_Hy1KoCkpEgPi_OQVqzW8", comment = "for keybase" }
+    "blog"                            = { value = "keybase-site-verification=udbQAxp-I1L3AHezcTnOAXhSPpq_CbLz1P9KCj9lkfo", comment = "for keybase" }
+    "localhost"                       = { value = "This DNS Record points to your localhost.", comment = "" }
+    "_github-pages-challenge-kei-s16" = { value = "7485c87d1b03fb73cb287559abf919", comment = "" }
   }
 }
 
